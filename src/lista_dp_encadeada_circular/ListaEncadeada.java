@@ -18,7 +18,7 @@ public class ListaEncadeada {
 		return false;
 	}
 	
-	public Node buscarUltimoElemento (Node primeiro) {
+	private Node buscarUltimoElemento (Node primeiro) {
 		/*Vai pecorrer a lista ate encontrar o ultimo elemento,
 		ou seja, pecorre ate que o aux.proximo seja igual ao inicio*/
 		Node aux = primeiro; 
@@ -31,6 +31,8 @@ public class ListaEncadeada {
 		}
 		return null; //Caso ainda estiver vazia, e o metodo for chamado
 	}
+	
+	//Buscar elemento na lista
 
 	public void adicionaElementoFinal(Conteudo conteudo) {
 		//Metodo vai adicionar elemento ao final da lista encadeada
@@ -44,9 +46,9 @@ public class ListaEncadeada {
 		}else {
 			//Para os demais casos, que a lista ja tem elementos adicionados
 			Node ultimo = buscarUltimoElemento(this.primeiro);
-			ultimo.setProximo(node); //Ultimo elemento (Ultimo No), vai receber o novo No como proximo
-			node.setAnterior(ultimo); 
-			node.setProximo(primeiro);
+			ultimo.proximo = node; //Ultimo elemento (Ultimo No), vai receber o novo No como proximo
+			node.anterior = ultimo;
+			node.proximo = primeiro; 
 			//Ao final, configura o (anterior) do primeiro elemento da lista, para receber o novo elemento adicionado
 			//Que agora vai ser o novo "Ultimo elemento"
 			this.primeiro.setAnterior(node);  
@@ -63,15 +65,19 @@ public class ListaEncadeada {
 			this.primeiro = node; 
 			this.length++; 
 		}else {
-			node.proximo = primeiro; 
-			node.anterior= primeiro.anterior;
-			primeiro.anterior.proximo = node;
-			primeiro.anterior = node;
+			//Para os demais casos, que a lista ja tem elementos adicionados
+			//(Obs: ultimo elemento poderia referenciado por "primeiro.anterior")
+			Node ultimo = buscarUltimoElemento(this.primeiro); 
+			node.proximo = primeiro; 		//Setando o ponteiro "proximo" do node
+			node.anterior= ultimo; 			//Setando o ponteiro "anterior" do node
+			ultimo.proximo = node; 			//Setando o ponteiro "proximo" do ultimo
+			primeiro.anterior.setProximo(node);  //Setando o ponteiro "anterior" do atual primeiro elemento 
 			
-			primeiro = node;
+			this.primeiro = node;	//Alterando o primeiro elemento da lista, para o novo node adicionado
 			this.length++; 
 		}
 	}
+	
 	
 	public void imprimirElementos () {
 		//Vai listar todos os elementos da lista
