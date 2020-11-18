@@ -32,7 +32,7 @@ public class ListaEncadeada {
 		return null; //Caso ainda estiver vazia, e o metodo for chamado
 	}
 
-	public void adicionarElemento (Conteudo conteudo) {
+	public void adicionaElementoFinal(Conteudo conteudo) {
 		//Metodo vai adicionar elemento ao final da lista encadeada
 		Node node = new Node (conteudo); //Crinado um novo No
 		if (isEmpty()) {
@@ -54,6 +54,25 @@ public class ListaEncadeada {
 		}
 	}
 	
+	public void adicionaElementoInicio (Conteudo conteudo) {
+		Node node = new Node (conteudo); 
+		if (isEmpty()) {
+			//Primeiro caso: Quando a lista nao tenha nenhum elemento
+			node.setProximo(node);
+			node.setAnterior(node);
+			this.primeiro = node; 
+			this.length++; 
+		}else {
+			node.proximo = primeiro; 
+			node.anterior= primeiro.anterior;
+			primeiro.anterior.proximo = node;
+			primeiro.anterior = node;
+			
+			primeiro = node;
+			this.length++; 
+		}
+	}
+	
 	public void imprimirElementos () {
 		//Vai listar todos os elementos da lista
 		Node aux = this.primeiro; 
@@ -69,13 +88,5 @@ public class ListaEncadeada {
 		}
 	}
 
-	public int getLength() {
-		return length;
-	}
-
-	public void setLength(int length) {
-		this.length = length;
-	}
-	
 }
 

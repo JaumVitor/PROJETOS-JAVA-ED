@@ -1,9 +1,9 @@
 package lista_dp_encadeada_circular;
 
 public class Node {
-	private Conteudo conteudo;
-	private Node anterior;  //Antercessor do meu elemento
-	private Node proximo;	//Posterior do meu elemento
+	public Conteudo conteudo;
+	public Node anterior;  //Antercessor do meu elemento
+	public Node proximo;	//Posterior do meu elemento
 	
 	public Node (Conteudo conteudo) {
 		this.conteudo = conteudo;

@@ -69,23 +69,19 @@ public class ListaED {
 		//Vai listar todos os elementos da lista
 		No aux = inicio; 
 		
-		if (inicio != null) {
-			do {
-				System.out.println(aux.data);
-				aux = aux.ante;
-			}
-			while (aux != inicio);
-		}else {
-			System.out.println("Lista esta vazia");
+		do {
+			System.out.println(aux.data);
+			aux = aux.ante;
 		}
+		while (aux != inicio);
 	}
 
-//	public String exibeLista() {
-//		String str = "Lista encadeada: " + inicio.data;
-//		for(No nodo = inicio.prox; nodo != inicio; nodo = nodo.prox)
-//			str += " " + nodo.data;
-//		return str + "\n";
-//	}
+	public String exibeLista() {
+		String str = "Lista encadeada: " + inicio.data;
+		for(No nodo = inicio.prox; nodo != inicio; nodo = nodo.prox)
+			str += " " + nodo.data;
+		return str + "\n";
+	}
 
 	
 }

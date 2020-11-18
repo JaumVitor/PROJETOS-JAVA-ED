@@ -16,6 +16,8 @@ public class ListaExec {
 		
 		Lista.imprimirElementos();
 		
+		System.out.println(Lista.exibeLista());
+		
 	}
 
 }
